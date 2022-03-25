@@ -1,0 +1,13 @@
+---
+- name: build image and push to docker hub play
+  hosts: ansible_host
+  tasks:
+  - name: remove image
+    command: docker rmi sydsh19/my-hello-world
+    ignore_errors: true
+  - name: build image
+    command: docker build -t sydsh19/my-hello-world ~/hello-world
+  - name: docker login
+    command: docker login -u sydsh19 -p K!G/8@w3jKj-JZt
+  - name: push image
+    command: docker push sydsh19/my-hello-world
